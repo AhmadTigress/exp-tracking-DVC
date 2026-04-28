@@ -7,6 +7,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 from dvclive import Live
+import yaml
+
+n_estimators = yaml.safe_load(open('/home/ahmadtigress/Documents/exp-tracking-dvc/dvclive/params.yaml'))["n_estimators"]
 
 
 data = pd.read_csv("/home/ahmadtigress/Documents/exp-tracking-dvc/data/water_potability.csv")
@@ -30,7 +33,7 @@ test_processed_data = fill_missing_with_median(test_data)
 X_train = train_processed_data.drop(['Potability'], axis=1)
 y_train = train_processed_data['Potability']
 
-n_estimators=500
+#n_estimators=500
 
 clf = RandomForestClassifier(n_estimators=n_estimators)
 clf.fit(X_train, y_train)
@@ -58,4 +61,4 @@ with Live(save_dvc_exp=True) as live:
     live.log_metric("recall_score:", recall)
     live.log_metric("f1_score:", f1)
 
-    live.log_param("n_estimators:", n_estimators)
+    live.log_param("n_estimators", n_estimators)
