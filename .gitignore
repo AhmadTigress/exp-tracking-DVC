@@ -216,3 +216,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# DVC
+.dvc/cache/
+.dvc/tmp/
+.dvc/updates
+.dvc/lock
+.dvc/plots/
+.dvc/state
+.dvc/config.local
+data/
+models/
+*.pkl
+*.joblib
+*.h5
+*.parquet
+*.npy
+*.npz
+*.pt
+*.pth
+*.bin
+*.tar.gz
+*.zip
+logs/
+EOF
